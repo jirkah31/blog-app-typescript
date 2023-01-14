@@ -1,0 +1,17 @@
+$note-color: rgb(233, 228, 59);
+$note-border-color: darken($note-color, 10%);
+$text-color: rgb(84, 84, 84);
+$shadow-color: #ccc;
+$shadow-color-input: black;
+$icon-color: rgb(184, 184, 184);
+
+@mixin button {
+	color: $icon-color;
+	border: none;
+	background-color: transparent;
+	cursor: pointer;
+
+	&:hover {
+		color: darken($icon-color, 20%)
+	}
+}

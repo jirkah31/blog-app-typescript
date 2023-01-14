@@ -1,0 +1,17 @@
+@import '../variabels';
+
+nav {
+	display: flex;
+	justify-content: center;
+
+	button {
+		@include button;
+		margin: 10px;
+		font-weight: bold;
+
+		&:hover {
+			color: $text-color;
+			text-shadow: 2px 1px 1px rgb(209, 209, 209);
+		}
+	}
+}

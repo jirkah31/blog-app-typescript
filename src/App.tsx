@@ -1,26 +1,47 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { FC, useState } from 'react';
+import './App.scss';
+import Notes from './components/Notes';
+import Nav from './components/Nav'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+const App: FC = () => {
+	const [showInput, setShowInput] = useState<any>(false)
+	const [showEdit, setShowEdit] = useState<boolean>(false)
+
+	const showInputNote = (): void => {
+		setShowInput(true)
+	}
+
+	const hideInputNote = (): void => {
+		setShowInput(false)
+	}
+
+	const showEditNote = (): void => {
+		setShowEdit(true)
+	}
+
+	const hideEditNote = (): void => {
+		setShowEdit(false)
+	}
+
+	const removeAllNotes = (): void => {
+		alert("I'm working hard on it")
+	}
+
+	return (
+		<>
+			<Nav 
+				showInputNote={showInputNote} 
+				removeAllNotes={removeAllNotes} 
+			/>
+			<Notes 
+				showInput={showInput} 
+				hideInputNote={hideInputNote} 
+				removeAllNotes={removeAllNotes}
+				showEdit={showEdit} 
+				hideEditNote={hideEditNote} 
+				showEditNote={showEditNote} 
+			/>
+		</>
+	)
 }
-
 export default App;

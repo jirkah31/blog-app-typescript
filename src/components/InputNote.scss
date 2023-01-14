@@ -1,0 +1,38 @@
+@import '../variabels';
+
+.input-container {
+	background-color: rgba(0, 0, 0, 0.55);
+	position: absolute;
+	display: flex;
+	width: 100vw;
+	height: 100vh;
+	z-index: 10;
+
+	form {
+		margin: auto;
+		box-shadow: 3px 3px 3px $shadow-color-input;
+
+		#head-line {
+			font-weight: bold;
+		}
+
+		input {
+			color: $text-color;
+			background-color: transparent;
+			border: none;
+
+			margin: {
+				top: 20px;
+			}
+
+			outline: none;
+		}
+
+		button {
+			@include button;
+			
+			margin: 3px;
+			
+		}
+	}
+}
