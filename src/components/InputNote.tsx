@@ -1,5 +1,5 @@
-import React, { ChangeEvent, FC } from 'react'
-import './InputNote.scss'
+import React, { FC } from 'react'
+import inputCSS from './InputNote.module.scss'
 
 interface NewHeadline {
 	setNewHeadLine: React.ChangeEventHandler<HTMLInputElement> | undefined;
@@ -25,12 +25,12 @@ const InputNote: FC<NewHeadline> = (props) => {
 	}
 
 	return (
-		<div className='input-container'>
-			<form className='note' >
-				<input id="head-line" type="text" autoFocus placeholder='nadpis' onChange={props.setNewHeadLine} />
+		<div className={inputCSS.container}>
+			<form className={inputCSS.note} >
+				<input id="head-line" className={inputCSS.title} type="text" autoFocus placeholder='nadpis' onChange={props.setNewHeadLine} />
 				<input id="text" type="text" placeholder='text poznámky' onChange={props.setNewText} />
-				<button type="submit" className="confirmButton" onClick={confirmBtn}>Zapsat poznámku</button><br />
-				<button className="cansel-btn" onClick={props.hideInputNote}>Cancel</button>
+				<button type="submit" className={inputCSS.btn} onClick={confirmBtn}>Zapsat poznámku</button><br />
+				<button className={inputCSS.btn} onClick={props.hideInputNote}>Cancel</button>
 			</form>
 		</div>
 	)

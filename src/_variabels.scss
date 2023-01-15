@@ -4,6 +4,7 @@ $text-color: rgb(84, 84, 84);
 $shadow-color: #ccc;
 $shadow-color-input: black;
 $icon-color: rgb(184, 184, 184);
+$background-input-color: rgba(0, 0, 0, 0.55);
 
 @mixin button {
 	color: $icon-color;

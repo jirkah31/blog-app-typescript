@@ -1,20 +1,30 @@
 @import '../variabels';
 
-.inputContainer {
+.container {
 	background-color: rgba(0, 0, 0, 0.55);
 	position: absolute;
-	right: 0;
 	top: 0;
 	display: flex;
 	width: 100vw;
 	height: 100vh;
 	z-index: 10;
 
-	form {
+	.note {
+		background-color: $note-color;
+		border: 1px solid $note-border-color;
+		width: 400px;
+		height: 200px;
+		border-radius: 20px;
+		box-shadow: 3px 3px 3px $shadow-color;
+		text-align: center;
 		margin: auto;
-		box-shadow: 3px 3px 3px $shadow-color-input;
 
-		#head-line {
+		.btn {
+			@include button;
+			margin: 3px;
+		}
+
+		.title {
 			font-weight: bold;
 		}
 
@@ -22,19 +32,11 @@
 			color: $text-color;
 			background-color: transparent;
 			border: none;
+			outline: none;
 
 			margin: {
 				top: 20px;
 			}
-
-			outline: none;
-		}
-
-		button {
-			@include button;
-			
-			margin: 3px;
-			
 		}
 	}
 }

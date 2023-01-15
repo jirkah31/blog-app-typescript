@@ -1,5 +1,5 @@
 import React, { useState, useEffect, FC } from 'react';
-import './Notes.scss';
+import notesCSS from './Notes.module.scss';
 import InputNote from './InputNote'
 import EditMyNote from './EditMyNote'
 import { INote } from '../Interfaces'
@@ -63,12 +63,12 @@ const Notes: FC<INotesProps> = (props) => {
 	return (
 		<>
 		{SetLocalStorage()}
-			<div className='container'>
+			<div className={notesCSS.container}>
 				{notes.map(({ headLine, text, id }: { headLine: string, text: string, id: number }) => (
-					<div key={id} className="note">
-					<nav>
-						<button type='button' onClick={() => { EditNote(); setEditId(id) }}><FaRegEdit /></button>
-						<button type='button' onClick={() => DeleteNote(id)}><FaTrashAlt /></button>
+					<div key={id} className={notesCSS.note}>
+					<nav className={notesCSS.nav}>
+						<button type='button' className={notesCSS.btn} onClick={() => { EditNote(); setEditId(id) }}><FaRegEdit /></button>
+						<button type='button' className={notesCSS.btn} onClick={() => DeleteNote(id)}><FaTrashAlt /></button>
 					</nav>
 		
 					<h1>{headLine}</h1>

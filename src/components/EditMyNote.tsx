@@ -37,12 +37,12 @@ const EditMyNote: FC<IEditProps> = (props) => {
 	SetLocalStorage()
 
 	return (
-		<div className={editMyNoteCSS.inputContainer}>
+		<div className={editMyNoteCSS.container}>
 			<form className={editMyNoteCSS.note} >
-				<input id="head-line" type="text" autoFocus placeholder='nadpis' value={newTitle} onChange={(e) => setNewTitle(e.target.value)} />
+				<input id="head-line" className={editMyNoteCSS.title} type="text" autoFocus placeholder='nadpis' value={newTitle} onChange={(e) => setNewTitle(e.target.value)} />
 				<input id="text" type="text" placeholder='text poznámky' value={newText} onChange={(e) => setNewText(e.target.value)} /><br />
-				<button type="submit" className="confirmButton" onClick={() => handleNoteEdit(props.editId, newTitle, newText)}>Edit note</button><br />
-				<button className="cansel-btn" onClick={props.hideEditNote}>Cancel</button>
+				<button type="submit" className={editMyNoteCSS.btn} onClick={() => handleNoteEdit(props.editId, newTitle, newText)}>Edit note</button><br />
+				<button className={editMyNoteCSS.btn} onClick={props.hideEditNote}>Cancel</button>
 			</form>
 		</div>
 	)
