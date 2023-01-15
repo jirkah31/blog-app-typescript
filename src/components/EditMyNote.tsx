@@ -1,13 +1,11 @@
 import React, { useEffect, useState, FC } from 'react'
 import { INote } from '../Interfaces'
 import { IEditProps } from '../Interfaces'
+import editMyNoteCSS from './EditMyNote.module.scss'
 
 
 const EditMyNote: FC<IEditProps> = (props) => {
-	// const editTitle = JSON.parse(localStorage.getItem("notes")) //takohle dostanu všechny záznamy
-	//potřebuju získat ID cíle u kterého jsem kliknul na edit button
-	//podle toho následně získám záznam, který předvyplním do inputů
-	//po potvrzení potřebuji aby se záznam aktualizovaný opět uložil na svoje místo
+	
 	const data: INote[] = JSON.parse(localStorage.getItem("notes") || "{}")
 	const [notes, setNotes] = useState<INote[]>(data)
 
@@ -24,7 +22,7 @@ const EditMyNote: FC<IEditProps> = (props) => {
 		})
 	}
 
-	const handleNoteEdit = (id: number | any, newTitle: string, newText: string): void => { //nenašel jsem jaký typ to má mít, když to je preventDefault
+	const handleNoteEdit = (id: any | number, newTitle: string, newText: string): void => { //nenašel jsem jaký typ to má mít, když to je preventDefault
 		setNotes(
 			notes.map((note: INote) => {
 				if (note.id === id) {
@@ -39,8 +37,8 @@ const EditMyNote: FC<IEditProps> = (props) => {
 	SetLocalStorage()
 
 	return (
-		<div className='input-container'>
-			<form className='note' >
+		<div className={editMyNoteCSS.inputContainer}>
+			<form className={editMyNoteCSS.note} >
 				<input id="head-line" type="text" autoFocus placeholder='nadpis' value={newTitle} onChange={(e) => setNewTitle(e.target.value)} />
 				<input id="text" type="text" placeholder='text poznámky' value={newText} onChange={(e) => setNewText(e.target.value)} /><br />
 				<button type="submit" className="confirmButton" onClick={() => handleNoteEdit(props.editId, newTitle, newText)}>Edit note</button><br />

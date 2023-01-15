@@ -4,16 +4,17 @@ import InputNote from './InputNote'
 import EditMyNote from './EditMyNote'
 import { INote } from '../Interfaces'
 import { INotesProps } from '../Interfaces'
-import Note from './Note'
+import { FaTrashAlt } from 'react-icons/fa'
+import { FaRegEdit } from 'react-icons/fa'
 
-const Notes: FC<INotesProps> = (props) => {
+const Notes: FC<INotesProps> = (props) => { 
 
-	const data = [{id:0, title:"wefgwgwagwe", text:'wgerwgwg'}]/* JSON.parse(localStorage.getItem("notes") || "{}") */
-	const [editId, setEditId] = useState<any>()
+	const data = JSON.parse(localStorage.getItem("notes") || "{}")
+	const [editId, setEditId] = useState<number>()
 	const [newHeadLine, setHeadLine] = useState<string>("")
 	const [newText, setText] = useState<string>("")
 
-	const [notes, setNotes] = useState<any[]>(() => {
+	const [notes, setNotes] = useState<INote[]>(() => {
 		if (!data) {
 			return []
 		} else {
@@ -21,24 +22,19 @@ const Notes: FC<INotesProps> = (props) => {
 		}
 	})
 
-	const setNewHeadLine = (event: any): void => {
-		setHeadLine(event.target.value)
-	}
+	const setNewHeadLine = (event: any): void => setHeadLine(event.target.value) //tohle předělat a poslat ten setter rovnou do komponenty viz YT video
 
-	const setNewText = (event: any): void => setText(event.target.value)
+	const setNewText = (event: any): void => setText(event.target.value) //tady to stejný
 
-	const HandleSubmit = (event: any): void => {
+	const HandleSubmit = (event: React.FormEvent): void => {
 		event.preventDefault()
 
 		if (newHeadLine && newText) {
-			console.log(newHeadLine)
-
 			setNotes((notes: INote[]) => [...notes, {
 				id: SetId(),
 				headLine: newHeadLine,
 				text: newText
 			}])
-			// localStorage.setItem("notes", JSON.stringify(notes))
 		}
 	}
 
@@ -50,40 +46,41 @@ const Notes: FC<INotesProps> = (props) => {
 		}
 	}
 
-	// const SetLocalStorage = (): void => {
-	// 	useEffect(() => {
-	// 		localStorage.setItem("notes", JSON.stringify(notes))
-	// 	})
+	const SetLocalStorage = (): void => {
+		useEffect(() => {
+			localStorage.setItem("notes", JSON.stringify(notes))
+		})
+	}
 
-	// }
-
-	const DeleteNote = (id: number): any => {
+	const DeleteNote = (id: number): void => {
 		setNotes(notes.filter((note: INote) => note.id !== id))
 	}
 
-	const EditNote = (): any => {
+	const EditNote = (): void => {
 		props.showEditNote()
 	}
 
 	return (
 		<>
+		{SetLocalStorage()}
 			<div className='container'>
 				{notes.map(({ headLine, text, id }: { headLine: string, text: string, id: number }) => (
-					<Note key={id}
-						headLine={headLine}
-						text={text}
-						id={id}
-						EditNote={EditNote()}
-						setEditId={setEditId(id)}
-						DeleteNote={DeleteNote(id)}
-					/>
+					<div key={id} className="note">
+					<nav>
+						<button type='button' onClick={() => { EditNote(); setEditId(id) }}><FaRegEdit /></button>
+						<button type='button' onClick={() => DeleteNote(id)}><FaTrashAlt /></button>
+					</nav>
+		
+					<h1>{headLine}</h1>
+					<p>{text}</p>
+				</div>
 				))}
 			</div>
 
-			{/* {props.showEdit && <EditMyNote
+			{props.showEdit && <EditMyNote
 				hideEditNote={props.hideEditNote}
 				editId={editId}
-			/>} */}
+			/>}
 
 			{props.showInput && <InputNote
 				handleSubmit={HandleSubmit}

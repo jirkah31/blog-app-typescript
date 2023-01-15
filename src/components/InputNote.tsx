@@ -4,13 +4,14 @@ import './InputNote.scss'
 interface NewHeadline {
 	setNewHeadLine: React.ChangeEventHandler<HTMLInputElement> | undefined;
 	setNewText: React.ChangeEventHandler<HTMLInputElement> | undefined;
-	handleSubmit(event: any): void;
-	hideInputNote(event: any): void;
+	handleSubmit(event: React.FormEvent): void;
+	hideInputNote(event: React.FormEvent): void;
 }
 
 const InputNote: FC<NewHeadline> = (props) => {
 
-	const confirmBtn = (event: any): void => {
+	const confirmBtn = (event: React.FormEvent): void => {
+		console.log(event)
 		const inputHeadLine = (document.getElementById("head-line") as HTMLInputElement)
 		const inputText = (document.getElementById("text") as HTMLInputElement)
 		event.preventDefault()

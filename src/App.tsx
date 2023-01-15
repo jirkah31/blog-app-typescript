@@ -4,7 +4,7 @@ import Notes from './components/Notes';
 import Nav from './components/Nav'
 
 const App: FC = () => {
-	const [showInput, setShowInput] = useState<any>(false)
+	const [showInput, setShowInput] = useState<boolean>(false)
 	const [showEdit, setShowEdit] = useState<boolean>(false)
 
 	const showInputNote = (): void => {
@@ -35,11 +35,11 @@ const App: FC = () => {
 			/>
 			<Notes 
 				showInput={showInput} 
-				hideInputNote={hideInputNote} 
-				removeAllNotes={removeAllNotes}
 				showEdit={showEdit} 
+				hideInputNote={hideInputNote} 
 				hideEditNote={hideEditNote} 
 				showEditNote={showEditNote} 
+				removeAllNotes={removeAllNotes}
 			/>
 		</>
 	)
